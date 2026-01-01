@@ -4,4 +4,4 @@
 
 Rule ID | Category | Severity | Notes
 --------|----------|----------|--------------------
-TET0001  |  KukerAllRules  |  Warning | Tet0001ObjectUsedAsArgumentToItsOwnArgumentAnalyzer, [Documentation](Tet0001ObjectUsedAsArgumentToItsOwnArgumentAnalyzer)
+TET0001  |  TestAnalyzerAllRules  |  Warning | Tet0001ObjectUsedAsArgumentToItsOwnArgumentAnalyzer, [Documentation](Tet0001ObjectUsedAsArgumentToItsOwnArgumentAnalyzer)

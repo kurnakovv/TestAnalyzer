@@ -12,6 +12,6 @@ namespace TestAnalyzer.Analyzers.Constants
         /// <summary>
         /// All rules category.
         /// </summary>
-        public const string ALL_RULES = "KukerAllRules";
+        public const string ALL_RULES = "TestAnalyzerAllRules";
     }
 }

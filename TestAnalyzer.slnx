@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="TestAnalyzer.Analyzers/TestAnalyzer.Analyzers.csproj" />
+  <Project Path="TestProject1/TestProject1.csproj" />
+</Solution>

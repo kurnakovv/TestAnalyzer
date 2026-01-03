@@ -17,7 +17,7 @@ jobs:
 
       - name: Set release notes
         run: |
-          echo "${{ github.event.release.body }}" > RELEASE-NOTES.txt
+          echo "${{ github.event.release.body }}" > RELEASE-NOTES
 
       - name: Verify commit exists in origin/main
         run: |

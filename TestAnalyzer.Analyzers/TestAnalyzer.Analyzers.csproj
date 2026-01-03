@@ -6,6 +6,8 @@
 		<EnableAnalyzerReleaseTracking>true</EnableAnalyzerReleaseTracking>
 		<PackageType>Analyzer</PackageType>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IsPackable>true</IsPackable>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<PackageId>kurnakovv.TestAnalyzer</PackageId>
 		<Version>0.1.0</Version>
 		<Authors>kurnakovv</Authors>
@@ -71,6 +73,14 @@
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None
+			Include="$(OutputPath)$(AssemblyName).dll"
+			Pack="true"
+			PackagePath="analyzers/dotnet/cs"
+		/>
 	</ItemGroup>
 
 </Project>

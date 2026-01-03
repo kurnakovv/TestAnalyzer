@@ -8,6 +8,8 @@
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<IsPackable>true</IsPackable>
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageId>kurnakovv.TestAnalyzer</PackageId>
 		<Version>0.1.0</Version>
 		<Authors>Kurnakovv</Authors>

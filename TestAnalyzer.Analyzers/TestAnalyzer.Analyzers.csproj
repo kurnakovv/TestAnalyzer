@@ -10,7 +10,7 @@
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<PackageId>kurnakovv.TestAnalyzer</PackageId>
 		<Version>0.1.0</Version>
-		<Authors>kurnakovv</Authors>
+		<Authors>Kurnakovv</Authors>
 		<Company>kurnakovv</Company>
 		<Product>TestAnalyzer</Product>
 		<Description>Test desc</Description>

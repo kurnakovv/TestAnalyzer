@@ -15,6 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set release notes
+        run: |
+          echo "${{ github.event.release.body }}" > RELEASE-NOTES.txt
+
       - name: Verify commit exists in origin/main
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
@@ -24,9 +28,6 @@ jobs:
         run: |
           TAG="${{ github.event.release.tag_name }}"
           echo "VERSION=${TAG#v}" >> $GITHUB_ENV
-
-      - name: Print release description
-        run: echo "${{ github.event.release.body }}"
 
       - name: Build
         run: dotnet build --configuration Release /p:Version=${VERSION}
@@ -38,9 +39,7 @@ jobs:
         run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
 
       - name: Push
-        run: dotnet nuget push kurnakovv.TestAnalyzer.${VERSION}.nupkg \
-          --source https://nuget.pkg.github.com/kurnakovv/index.json \
-          --api-key ${GITHUB_TOKEN}
+        run: dotnet nuget push kurnakovv.TestAnalyzer.${VERSION}.nupkg --source https://nuget.pkg.github.com/kurnakovv/index.json --api-key ${GITHUB_TOKEN}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

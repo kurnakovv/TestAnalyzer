@@ -13,7 +13,6 @@
 		<Authors>Kurnakovv</Authors>
 		<Company>kurnakovv</Company>
 		<Product>TestAnalyzer</Product>
-		<Description>Test desc</Description>
 		<PackageIcon>ChatGPT Image Dec 25, 2025, 08_08_44 PM - Copy.png</PackageIcon>
 		<PackageReadmeFile>PackageReadMe.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/kurnakovv/TestAnalyzer</RepositoryUrl>
@@ -33,6 +32,10 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+		<PackageReference Include="MinVer" Version="6.1.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,11 +79,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None
-			Include="$(OutputPath)$(AssemblyName).dll"
-			Pack="true"
-			PackagePath="analyzers/dotnet/cs"
-		/>
+		<None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
 	</ItemGroup>
 
 	<Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">

@@ -14,7 +14,6 @@
 		<Company>kurnakovv</Company>
 		<Product>TestAnalyzer</Product>
 		<Description>Test desc</Description>
-		<PackageDescription>Test desc</PackageDescription>
 		<PackageIcon>ChatGPT Image Dec 25, 2025, 08_08_44 PM - Copy.png</PackageIcon>
 		<PackageReadmeFile>PackageReadMe.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/kurnakovv/TestAnalyzer</RepositoryUrl>
@@ -90,7 +89,7 @@
 
 	<Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
 		<PropertyGroup>
-			<PackageDescription>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../RELEASE-NOTES"))</PackageDescription>
+			<PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../RELEASE-NOTES"))</PackageReleaseNotes>
 		</PropertyGroup>
 	</Target>
 </Project>

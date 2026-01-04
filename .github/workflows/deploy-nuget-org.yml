@@ -30,6 +30,10 @@ jobs:
       with:
         fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
 
+    - name: Set release notes
+      run: |
+        echo "${{ github.event.release.body }}" > RELEASE-NOTES
+
     # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
       uses: actions/setup-dotnet@v3

@@ -13,6 +13,7 @@
 		<Authors>Kurnakovv</Authors>
 		<Company>kurnakovv</Company>
 		<Product>TestAnalyzer</Product>
+		<Description>EnumConverter is a little open source library for convert enum</Description>
 		<PackageIcon>ChatGPT Image Dec 25, 2025, 08_08_44 PM - Copy.png</PackageIcon>
 		<PackageReadmeFile>PackageReadMe.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/kurnakovv/TestAnalyzer</RepositoryUrl>

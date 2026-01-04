@@ -4,13 +4,12 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 		<EnableAnalyzerReleaseTracking>true</EnableAnalyzerReleaseTracking>
-		<PackageType>Analyzer</PackageType>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<IsPackable>true</IsPackable>
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 		<PackageId>kurnakovv.TestAnalyzer</PackageId>
 		<Version>0.1.0</Version>
-		<Authors>Kurnakovv</Authors>
+		<Authors>kurnakovv</Authors>
 		<Company>kurnakovv</Company>
 		<Product>TestAnalyzer</Product>
 		<Description>Test analyzer is test analyzer</Description>

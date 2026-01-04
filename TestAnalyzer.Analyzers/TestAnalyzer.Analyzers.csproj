@@ -7,6 +7,7 @@
 		<IncludeBuildOutput>false</IncludeBuildOutput>
 		<IsPackable>true</IsPackable>
 		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+		<DevelopmentDependency>true</DevelopmentDependency>
 		<PackageId>kurnakovv.TestAnalyzer</PackageId>
 		<Version>0.1.0</Version>
 		<Authors>kurnakovv</Authors>

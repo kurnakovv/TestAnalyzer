@@ -7,6 +7,9 @@ permissions:
   contents: read
   packages: write
 
+env:
+  IS_DEPLOY_NUGET_GH_PACKAGE_ACTION: true
+
 jobs:
   build:
     runs-on: ubuntu-latest

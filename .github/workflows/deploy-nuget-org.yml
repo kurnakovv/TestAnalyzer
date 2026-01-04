@@ -16,6 +16,7 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
+  IS_DEPLOY_NUGET_ORG_ACTION: true
   NuGetDirectory: ${{ github.workspace}}/nuget
 
 defaults:

@@ -13,7 +13,7 @@
 		<Authors>Kurnakovv</Authors>
 		<Company>kurnakovv</Company>
 		<Product>TestAnalyzer</Product>
-		<Description>Test desc</Description>
+		<Description>Test analyzer is test analyzer</Description>
 		<PackageIcon>ChatGPT Image Dec 25, 2025, 08_08_44 PM - Copy.png</PackageIcon>
 		<PackageReadmeFile>PackageReadMe.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/kurnakovv/TestAnalyzer</RepositoryUrl>
@@ -87,9 +87,15 @@
 		<None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" />
 	</ItemGroup>
 
-	<Target Name="PrepareReleaseNotes" BeforeTargets="GenerateNuspec">
+	<Target Name="PrepareReleaseNotesNugetOrg" BeforeTargets="GenerateNuspec" Condition="$(IS_DEPLOY_NUGET_ORG_ACTION) == 'true'">
 		<PropertyGroup>
 			<PackageReleaseNotes>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../RELEASE-NOTES"))</PackageReleaseNotes>
+		</PropertyGroup>
+	</Target>
+
+	<Target Name="PrepareReleaseNotesGitHubPackage" BeforeTargets="GenerateNuspec" Condition="$(IS_DEPLOY_NUGET_GH_PACKAGE_ACTION) == 'true'">
+		<PropertyGroup>
+			<PackageDescription>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/../RELEASE-NOTES"))</PackageDescription>
 		</PropertyGroup>
 	</Target>
 </Project>

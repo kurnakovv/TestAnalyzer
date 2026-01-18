@@ -61,28 +61,28 @@ jobs:
               --skip-duplicate
           }
 
-  comment:
-    needs: pack-and-deploy
+  # comment:
+  #   needs: pack-and-deploy
 
-    runs-on: ubuntu-latest
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Comment PR with NuGet link
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prNumber = context.issue.number;
+  #   steps:
+  #     - name: Comment PR with NuGet link
+  #       uses: actions/github-script@v7
+  #       with:
+  #         script: |
+  #           const prNumber = context.issue.number;
 
-            const commentBody = `
-              🚀 NuGet package has been published.
+  #           const commentBody = `
+  #             🚀 NuGet package has been published.
 
-              🔗 Package link:
-              https://www.nuget.org/packages/kurnakovv.TestAnalyzer-pr/0.0.${{ github.run_number }}-pr-${{ github.event.issue.number }}
-            `;
+  #             🔗 Package link:
+  #             https://www.nuget.org/packages/kurnakovv.TestAnalyzer-pr/0.0.${{ github.run_number }}-pr-${{ github.event.issue.number }}
+  #           `;
 
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: commentBody
-            });
+  #           await github.rest.issues.createComment({
+  #             owner: context.repo.owner,
+  #             repo: context.repo.repo,
+  #             issue_number: prNumber,
+  #             body: commentBody
+  #           });

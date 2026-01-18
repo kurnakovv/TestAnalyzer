@@ -24,8 +24,8 @@ namespace TestAnalyzer.Analyzers.Rules
         private const string EXCLUDED_METHODS = "dotnet_diagnostic.TET0001.excluded_methods";
         private const string DIAGNOSTIC_ID = "TET0001";
 
-        private static readonly LocalizableString s_title = "An object is used as an argument to its own method biak";
-        private static readonly LocalizableString s_messageFormat = "Object '{0}' is passed as an argument to its own method call; did you mean to pass a different object? biakk";
+        private static readonly LocalizableString s_title = "AAAAAAAAAAAAAAAAAn object is used as an argument to its own method biak";
+        private static readonly LocalizableString s_messageFormat = "OOOOOOOOOOOOOOOObject '{0}' is passed as an argument to its own method call; did you mean to pass a different object? biakk";
         private static readonly LocalizableString s_description = "Detects calls like 'obj.Foo(obj)' or extension/static calls like 'Foo(obj, obj)'. Usually this is a typo biak. Changes from PR 9.";
 
         private static readonly DiagnosticDescriptor s_rule = new DiagnosticDescriptor(

@@ -1,0 +1,49 @@
+name: Pack NuGet for pr
+
+on:
+  pull_request:
+    paths-ignore:
+      - 'ReadMe.md'
+      - 'docs/wiki/**'
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace }}/nuget
+  PACKAGE_VERSION: 0.0.${{ github.run_number }}-pr-${{ github.event.pull_request.number }}
+  IS_DEPLOY_NUGET_FOR_PR: true
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+
+      - name: Run tests
+        run: dotnet test --configuration Release
+
+      - name: Pack NuGet for PR
+        run: |
+          dotnet pack `
+            --configuration Release `
+            --output ${{ env.NuGetDirectory }} `
+            /p:PackageVersion=${{ env.PACKAGE_VERSION }}
+
+      - name: Upload NuGet artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-preview
+          path: ${{ env.NuGetDirectory }}/*.nupkg

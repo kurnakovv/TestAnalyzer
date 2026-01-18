@@ -89,4 +89,4 @@ jobs:
             </PackageReference>
             ```
 
-            🗒️ Please wait a while for Nuget.Org to validate the version and deploy it. This usually takes a few minutes.
+            ⏰ Please wait a while for Nuget.Org to validate the version and deploy it. This usually takes a few minutes. If you receive a 404 page from the link, it means that the package has not yet been deployed and you need to wait.

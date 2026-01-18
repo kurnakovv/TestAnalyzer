@@ -63,6 +63,7 @@ jobs:
       - name: Send report message
         uses: mshick/add-pr-comment@v2
         with:
+          refresh-message-position: true
           message: |
             🚀 NuGet package has been published.
 

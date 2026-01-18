@@ -26,7 +26,7 @@ namespace TestAnalyzer.Analyzers.Rules
 
         private static readonly LocalizableString s_title = "An object is used as an argument to its own method biak";
         private static readonly LocalizableString s_messageFormat = "Object '{0}' is passed as an argument to its own method call; did you mean to pass a different object? biak";
-        private static readonly LocalizableString s_description = "Detects calls like 'obj.Foo(obj)' or extension/static calls like 'Foo(obj, obj)'. Usually this is a typo biak. Changes from PR 3.";
+        private static readonly LocalizableString s_description = "Detects calls like 'obj.Foo(obj)' or extension/static calls like 'Foo(obj, obj)'. Usually this is a typo biak. Changes from PR 4.";
 
         private static readonly DiagnosticDescriptor s_rule = new DiagnosticDescriptor(
             DIAGNOSTIC_ID,

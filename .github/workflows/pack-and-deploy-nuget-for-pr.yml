@@ -27,6 +27,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Calculate deploy number for PR (OWNER only)
+        id: deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $comments = gh api repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/comments `
+            --jq '[.[] | select(.body == "/deploy" and .author_association == "OWNER")]'
+
+          $deployNumber = ($comments | ConvertFrom-Json).Count
+
+          echo "DEPLOY_NUMBER=$deployNumber" >> $env:GITHUB_ENV
+
       - name: Checkout PR
         uses: actions/checkout@v4
         with:
@@ -41,7 +53,7 @@ jobs:
 
       - name: Pack NuGet
         env:
-          PACKAGE_VERSION: 0.0.${{ github.run_number }}-pr-${{ github.event.issue.number }}
+          PACKAGE_VERSION: 0.0.${{ env.DEPLOY_NUMBER }}-pr-${{ github.event.issue.number }}
         run: |
           dotnet pack `
             --configuration Release `
@@ -67,4 +79,4 @@ jobs:
             🚀 NuGet package has been published.
 
             🔗 Package link:
-            https://www.nuget.org/packages/kurnakovv.TestAnalyzer-pr/0.0.${{ github.run_number }}-pr-${{ github.event.issue.number }}
+            https://www.nuget.org/packages/kurnakovv.TestAnalyzer-pr/0.0.${{ env.DEPLOY_NUMBER }}-pr-${{ github.event.issue.number }}

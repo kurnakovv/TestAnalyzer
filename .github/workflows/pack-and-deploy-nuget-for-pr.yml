@@ -88,3 +88,5 @@ jobs:
               <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             </PackageReference>
             ```
+
+            🗒️ Please wait a while for Nuget.Org to validate the version and deploy it. This usually takes a few minutes.

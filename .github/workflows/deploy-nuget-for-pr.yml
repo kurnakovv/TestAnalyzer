@@ -1,46 +1,49 @@
-name: Deploy NuGet for PR
 
-on:
-  issue_comment:
-    types: [created]
 
-permissions:
-  contents: read
-  actions: read
 
-defaults:
-  run:
-    shell: pwsh
+# name: Deploy NuGet for PR
 
-env:
-  IS_DEPLOY_NUGET_FOR_PR: true
+# on:
+#   issue_comment:
+#     types: [created]
 
-jobs:
-  deploy:
-    if: >
-      github.event.issue.pull_request != null &&
-      github.event.comment.body == '/deploy' &&
-      github.event.comment.author_association == 'OWNER'
+# permissions:
+#   contents: read
+#   actions: read
 
-    runs-on: ubuntu-latest
+# defaults:
+#   run:
+#     shell: pwsh
 
-    steps:
-      - name: Download NuGet artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: nuget-pr-${{ github.event.issue.number }}
-          #path: nuget
+# env:
+#   IS_DEPLOY_NUGET_FOR_PR: true
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+# jobs:
+#   deploy:
+#     if: >
+#       github.event.issue.pull_request != null &&
+#       github.event.comment.body == '/deploy' &&
+#       github.event.comment.author_association == 'OWNER'
 
-      - name: Publish NuGet for PR
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_PR_APIKEY }}
-        run: |
-          foreach ($file in Get-ChildItem "nuget/*.nupkg") {
-            dotnet nuget push $file `
-              --api-key "$env:NUGET_API_KEY" `
-              --source https://api.nuget.org/v3/index.json `
-              --skip-duplicate
-          }
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Download NuGet artifact
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: nuget-pr-${{ github.event.issue.number }}
+#           path: nuget
+
+#       - name: Setup .NET
+#         uses: actions/setup-dotnet@v3
+
+#       - name: Publish NuGet for PR
+#         env:
+#           NUGET_API_KEY: ${{ secrets.NUGET_PR_APIKEY }}
+#         run: |
+#           foreach ($file in Get-ChildItem "nuget/*.nupkg") {
+#             dotnet nuget push $file `
+#               --api-key "$env:NUGET_API_KEY" `
+#               --source https://api.nuget.org/v3/index.json `
+#               --skip-duplicate
+#           }

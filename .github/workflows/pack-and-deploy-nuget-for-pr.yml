@@ -1,0 +1,61 @@
+name: Pack & Deploy NuGet for PR
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace }}/nuget
+  IS_DEPLOY_NUGET_FOR_PR: true
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  pack-and-deploy:
+    if: >
+      github.event.issue.pull_request != null &&
+      github.event.comment.body == '/deploy' &&
+      github.event.comment.author_association == 'OWNER'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+
+      - name: Run tests
+        run: dotnet test --configuration Release
+
+      - name: Pack NuGet
+        env:
+          PACKAGE_VERSION: 0.0.${{ github.run_number }}-pr-${{ github.event.issue.number }}
+        run: |
+          dotnet pack `
+            --configuration Release `
+            --output ${{ env.NuGetDirectory }} `
+            /p:PackageVersion=$env:PACKAGE_VERSION
+
+      - name: Publish NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_PR_APIKEY }}
+        run: |
+          foreach ($file in Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg") {
+            dotnet nuget push $file `
+              --api-key "$env:NUGET_API_KEY" `
+              --source https://api.nuget.org/v3/index.json `
+              --skip-duplicate
+          }

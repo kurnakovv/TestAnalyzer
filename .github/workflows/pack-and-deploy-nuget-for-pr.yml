@@ -59,6 +59,16 @@ jobs:
               --source https://api.nuget.org/v3/index.json `
               --skip-duplicate
           }
+
+  comment:
+    if: >
+      github.event.issue.pull_request != null &&
+      github.event.comment.body == '/deploy' &&
+      github.event.comment.author_association == 'OWNER'
+
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Comment PR with NuGet link
         uses: actions/github-script@v7
         with:

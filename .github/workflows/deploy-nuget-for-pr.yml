@@ -28,7 +28,7 @@ jobs:
       - name: Download NuGet artifact
         uses: actions/download-artifact@v4
         with:
-          name: nuget-pr-${{ github.event.pull_request.number }}
+          name: nuget-pr-${{ github.event.issue.number }}
           path: nuget
 
       - name: Setup .NET

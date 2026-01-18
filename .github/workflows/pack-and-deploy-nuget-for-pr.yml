@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Calculate deploy number for PR (OWNER only)
+      - name: Calculate deploy number for PR
         id: deploy
         env:
           GH_TOKEN: ${{ github.token }}
@@ -76,7 +76,15 @@ jobs:
         with:
           refresh-message-position: true
           message: |
-            🚀 NuGet package has been published.
+            🚀 NuGet package has been published!
 
             🔗 Package link:
             https://www.nuget.org/packages/kurnakovv.TestAnalyzer-pr/0.0.${{ env.DEPLOY_NUMBER }}-pr-${{ github.event.issue.number }}
+
+            💻 Add a dependency to your csproj:
+            ```xml
+            <PackageReference Include="kurnakovv.TestAnalyzer-pr" Version="0.0.${{ env.DEPLOY_NUMBER }}-pr-${{ github.event.issue.number }}">
+              <PrivateAssets>all</PrivateAssets>
+              <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            </PackageReference>
+            ```

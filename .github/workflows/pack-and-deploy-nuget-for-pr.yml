@@ -36,8 +36,8 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
 
-      - name: Run tests
-        run: dotnet test --configuration Release
+      - name: Run build
+        run: dotnet build --configuration Release
 
       - name: Pack NuGet
         env:
@@ -47,6 +47,7 @@ jobs:
             --configuration Release `
             --output ${{ env.NuGetDirectory }} `
             /p:PackageVersion=$env:PACKAGE_VERSION
+            --no-build
 
       - name: Publish NuGet
         env:

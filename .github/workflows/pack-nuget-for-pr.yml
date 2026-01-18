@@ -1,4 +1,4 @@
-name: Pack NuGet for pr
+name: Pack NuGet for PR
 
 on:
   pull_request:
@@ -23,6 +23,8 @@ defaults:
 jobs:
   pack:
     runs-on: ubuntu-latest
+    outputs:
+      artifact-name: ${{ steps.upload.outputs.artifact-name }}
 
     steps:
       - uses: actions/checkout@v4
@@ -45,5 +47,5 @@ jobs:
       - name: Upload NuGet artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nuget-preview
+          name: nuget-pr-${{ github.event.pull_request.number }}
           path: ${{ env.NuGetDirectory }}/*.nupkg

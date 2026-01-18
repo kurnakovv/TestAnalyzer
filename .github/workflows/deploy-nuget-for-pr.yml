@@ -28,13 +28,13 @@ jobs:
       - name: Download NuGet artifact
         uses: actions/download-artifact@v4
         with:
-          name: nuget-preview
+          name: nuget-pr-${{ github.event.pull_request.number }}
           path: nuget
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
 
-      - name: Publish NuGet preview
+      - name: Publish NuGet for PR
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_PR_APIKEY }}
         run: |

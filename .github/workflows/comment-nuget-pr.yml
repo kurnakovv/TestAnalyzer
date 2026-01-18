@@ -1,38 +1,38 @@
-name: Comment PR with NuGet link
+# name: Comment PR with NuGet link
 
-on:
-  workflow_run:
-    workflows:
-      - Pack & Deploy NuGet for PR
-    types:
-      - completed
+# on:
+#   workflow_run:
+#     workflows:
+#       - Pack & Deploy NuGet for PR
+#     types:
+#       - completed
 
-permissions:
-  issues: write
-  pull-requests: read
+# permissions:
+#   issues: write
+#   pull-requests: read
 
-jobs:
-  comment:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+# jobs:
+#   comment:
+#     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Comment PR with NuGet link
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prNumber = context.issue.number;
-            const body = `
-            🚀 **NuGet package has been published**
+#     steps:
+#       - name: Comment PR with NuGet link
+#         uses: actions/github-script@v7
+#         with:
+#           script: |
+#             const prNumber = context.issue.number;
+#             const body = `
+#             🚀 **NuGet package has been published**
 
-            🔗 **Package link**  
-            test ${prNumber}
-            `;
+#             🔗 **Package link**  
+#             test ${prNumber}
+#             `;
 
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: 11,
-              body
-            });
+#             await github.rest.issues.createComment({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               issue_number: 11,
+#               body
+#             });
